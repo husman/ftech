@@ -7,65 +7,66 @@
 
 #define FIB_PERIODS enum
 
-namespace PERIOD {
-    enum SECONDS {
-        ONE,
-        TWO,
-        THREE,
-        FIVE,
-        EIGHT,
-        THIRTEEN,
-        TWENTY_ONE,
-        THIRTY_FOUR,
-    };
-
-    enum MINUTES {
-        ONE,
-        TWO,
-        THREE,
-        FIVE,
-        EIGHT,
-        THIRTEEN,
-        TWENTY_ONE,
-        THIRTY_FOUR,
-    };
-
-    enum DAYS {
-        ONE,
-        TWO,
-        THREE,
-        FIVE,
-        EIGHT,
-        THIRTEEN,
-        TWENTY_ONE,
-        THIRTY_FOUR,
-    };
-
-    enum MONTHS {
-        ONE,
-        TWO,
-        THREE,
-        FIVE,
-        EIGHT,
-        THIRTEEN,
-        TWENTY_ONE,
-        THIRTY_FOUR,
-    };
-
-    enum YEARS {
-        ONE,
-        TWO,
-        THREE,
-        FIVE,
-        EIGHT,
-        THIRTEEN,
-        TWENTY_ONE,
-        THIRTY_FOUR,
-    };
-}
+//namespace PERIOD {
+//    enum SECONDS {
+//        ONE,
+//        TWO,
+//        THREE,
+//        FIVE,
+//        EIGHT,
+//        THIRTEEN,
+//        TWENTY_ONE,
+//        THIRTY_FOUR,
+//    };
+//
+//    enum MINUTES {
+//        ONE,
+//        TWO,
+//        THREE,
+//        FIVE,
+//        EIGHT,
+//        THIRTEEN,
+//        TWENTY_ONE,
+//        THIRTY_FOUR,
+//    };
+//
+//    enum DAYS {
+//        ONE,
+//        TWO,
+//        THREE,
+//        FIVE,
+//        EIGHT,
+//        THIRTEEN,
+//        TWENTY_ONE,
+//        THIRTY_FOUR,
+//    };
+//
+//    enum MONTHS {
+//        ONE,
+//        TWO,
+//        THREE,
+//        FIVE,
+//        EIGHT,
+//        THIRTEEN,
+//        TWENTY_ONE,
+//        THIRTY_FOUR,
+//    };
+//
+//    enum YEARS {
+//        ONE,
+//        TWO,
+//        THREE,
+//        FIVE,
+//        EIGHT,
+//        THIRTEEN,
+//        TWENTY_ONE,
+//        THIRTY_FOUR,
+//    };
+//}
 
 enum CSVLineType {
-    DATE_OPEN_HIGH_LOW_CLOSE__AVGVOL_ADJCLOSE,
+    DATE_OPEN_LOW_HIGH_CLOSE_AVGVOL = 6,
+    DATE_OPEN_HIGH_LOW_CLOSE__AVGVOL_ADJCLOSE = 7,
 };
 
 #endif //FTECH_CONSTANTS_H

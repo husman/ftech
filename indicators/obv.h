@@ -6,18 +6,28 @@
 #define FTECH_OBV_H
 
 #include <stdio.h>
+#include <iostream>
 #include "constants.h"
+
+#include <vector>
+#include <cmath>
+#include <boost/tuple/tuple.hpp>
+
+#include "../gnuplot/gnuplot-iostream.h"
 
 class obv {
 private:
     int period;
-    int dataWidth, dataHeight;
+    unsigned int lineType;
+    int frameSize;
     double *data;
+    size_t dataLen;
 
 public:
-    bool setDataFromCSV(char *filepath);
-    bool setPeriod(int period);
-    double *processCSVLine(std::string, CSVLineType);
+    obv(int p, unsigned int lineType);
+    void printData();
+    void plotOBV();
+    bool setDataFromCSV(std::string filepath);
 };
 
 
