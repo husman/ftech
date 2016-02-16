@@ -1,13 +1,14 @@
 #include <iostream>
-#include "indicators/obv.h"
+#include "indicators/MarketData.h"
+#include "indicators/obv/Obv.h"
 
 using namespace std;
 
 int main() {
-    obv ind(20, CSVLineType::DATE_OPEN_LOW_HIGH_CLOSE_AVGVOL);
-    ind.setDataFromCSV("HistoricalQuotes_ADBE_2-15-20162-51PMET.csv");
-    ind.printData();
-    ind.plotOBV();
-    cout << "Launching OBV plot." << endl;
+    MarketData md;
+    md.seedDataFromCSV("data/HistoricalQuotes_ADBE_2-15-20162-51PMET.csv", "ADBE");
+
+    Obv obv(&md);
+    obv.plotOBV();
     return 0;
 }

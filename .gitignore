@@ -29,3 +29,6 @@
 
 # MacOSX
 .DS_Store
+
+# IDE
+.idea/
