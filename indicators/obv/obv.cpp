@@ -84,3 +84,7 @@ Obv::Obv(MarketData const *marketData) {
 
     buildData();
 }
+
+void Obv::reSync() {
+    buildData();
+}

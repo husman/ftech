@@ -33,7 +33,9 @@ public:
 
     std::string getTickerSymbol() const;
 
-    int getPeriod() const;
+    size_t getPeriod() const;
+
+    void addDataPoint(double price, size_t volume);
 
     std::vector<std::pair<double, size_t>>::const_iterator getDataBegin() const;
 

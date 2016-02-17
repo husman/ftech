@@ -28,6 +28,8 @@ public:
 
     void printData();
 
+    void reSync();
+
     void plotOBV();
 };
 

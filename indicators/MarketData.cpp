@@ -68,10 +68,14 @@ std::vector<std::pair<double, size_t>>::const_iterator MarketData::getDataEnd() 
     return data.end();
 }
 
-int MarketData::getPeriod() const {
-    return period;
+size_t MarketData::getPeriod() const {
+    return data.size();
 }
 
 std::string MarketData::getTickerSymbol() const {
     return ticker;
+}
+
+void MarketData::addDataPoint(double price, size_t volume) {
+    data.push_back(std::make_pair(price, volume));
 }
