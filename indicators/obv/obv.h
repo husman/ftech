@@ -8,11 +8,11 @@
 
 #include "../../global.h"
 #include "../../MarketData.h"
+#include "../../MarketObserver.h"
 
-class Obv {
+class Obv : public MarketObserver {
 private:
-    double *data;
-    size_t dataLen;
+    std::vector<std::pair<double, double>> data;
     MarketData const *mktData;
 
     void buildData();
@@ -20,11 +20,13 @@ private:
 public:
     Obv(MarketData const *marketData);
 
+    void addDataPoint(double price, size_t volume);
+
     void printData();
 
-    void reSync();
-
     void plotOBV();
+
+    std::string getTickerSymbol();
 };
 
 

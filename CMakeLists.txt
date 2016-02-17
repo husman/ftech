@@ -12,14 +12,15 @@ set(SOURCE_FILES
     main.cpp
     MarketEvent.cpp
     MarketEvent.h
-)
+    MarketObserver.h
+    )
 
 set(LIB_LINKS
     util
     boost_iostreams
     boost_system
     boost_filesystem
-)
+    )
 
 link_directories($ENV{BOOST_HOME}/lib)
 include_directories($ENV{BOOST_HOME}/include)

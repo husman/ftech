@@ -1,14 +1,23 @@
 #include <iostream>
 #include "MarketData.h"
+#include "MarketEvent.h"
 #include "indicators/obv/Obv.h"
 
-using namespace std;
-
 int main() {
-    MarketData md;
-    md.seedDataFromCSV("data/HistoricalQuotes_ADBE_2-15-20162-51PMET.csv", "ADBE");
+    MarketEvent mktEvent;
+    MarketData mdADBE;
+    MarketData mdGOOG;
 
-    Obv obv(&md);
-    obv.plotOBV();
+    mdADBE.seedDataFromCSV("data/HistoricalQuotes_ADBE_2-15-20162-51PMET.csv", "ADBE");
+    mdGOOG.seedDataFromCSV("data/HistoricalQuotes_ADBE_2-15-20162-51PMET.csv", "GOOG");
+
+    Obv obvADBE(&mdADBE);
+    Obv obvGOOG(&mdGOOG);
+
+    mktEvent.subscribe(&obvADBE);
+    mktEvent.subscribe(&obvGOOG);
+
+    mktEvent.trigger(MarketEvent::EventType::ADD_DATA_POINT, "ADBE", 77.77, 999777);
+
     return 0;
 }
