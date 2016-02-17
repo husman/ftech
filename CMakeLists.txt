@@ -4,12 +4,14 @@ project(ftech)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 set(SOURCE_FILES
-    indicators/constants.h
+    global.h
     indicators/obv/Obv.cpp
     indicators/obv/Obv.h
-    indicators/MarketData.cpp
-    indicators/MarketData.h
+    MarketData.cpp
+    MarketData.h
     main.cpp
+    MarketEvent.cpp
+    MarketEvent.h
 )
 
 set(LIB_LINKS

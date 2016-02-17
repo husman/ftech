@@ -5,15 +5,9 @@
 #ifndef FTECH_OBV_H
 #define FTECH_OBV_H
 
-#include <boost/tuple/tuple.hpp>
-#include <vector>
-#include <cmath>
-#include <stdio.h>
-#include <iostream>
 
-#include "../../gnuplot/gnuplot-iostream.h"
-#include "../constants.h"
-#include "../MarketData.h"
+#include "../../global.h"
+#include "../../MarketData.h"
 
 class Obv {
 private:

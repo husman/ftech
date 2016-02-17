@@ -5,14 +5,7 @@
 #ifndef FTECH_MARKETDATA_H
 #define FTECH_MARKETDATA_H
 
-#include <stdio.h>
-#include <iostream>
-#include <vector>
-#include <cmath>
-#include <boost/tuple/tuple.hpp>
-
-#include "../gnuplot/gnuplot-iostream.h"
-#include "constants.h"
+#include "global.h"
 
 
 class MarketData {
