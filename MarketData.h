@@ -22,6 +22,8 @@ public:
 
     void printData();
 
+    void plot();
+
     size_t getSize() const;
 
     std::string getTickerSymbol() const;

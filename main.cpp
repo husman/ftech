@@ -6,16 +6,15 @@
 int main() {
     MarketEvent mktEvent;
     MarketData mdADBE;
-    MarketData mdGOOG;
+    MarketData mdDailyPrices;
 
     mdADBE.seedDataFromCSV("data/HistoricalQuotes_ADBE_2-15-20162-51PMET.csv", "ADBE");
-    mdGOOG.seedDataFromCSV("data/HistoricalQuotes_ADBE_2-15-20162-51PMET.csv", "GOOG");
+    mdDailyPrices.seedDataFromCSV("data/HistoricalQuotes_ADBE_2-15-20162-51PMET.csv", "ADBE-daily-prices");
 
     Obv obvADBE(&mdADBE);
-    Obv obvGOOG(&mdGOOG);
-
     mktEvent.subscribe(&obvADBE);
-    mktEvent.subscribe(&obvGOOG);
+
+    obvADBE.plotOBV();
 
     mktEvent.trigger(MarketEvent::EventType::ADD_DATA_POINT, "ADBE", 77.77, 999777);
 

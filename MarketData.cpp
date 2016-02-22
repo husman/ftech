@@ -79,3 +79,6 @@ std::string MarketData::getTickerSymbol() const {
 void MarketData::addDataPoint(double price, size_t volume) {
     data.push_back(std::make_pair(price, volume));
 }
+
+void MarketData::plot() {
+}

@@ -31,3 +31,7 @@ void MarketEvent::trigger(MarketEvent::EventType eventType, std::string tickerSy
             break;
     }
 }
+
+MarketEvent::MarketEvent() {
+
+}

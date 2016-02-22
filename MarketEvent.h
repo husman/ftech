@@ -16,6 +16,8 @@ public:
         ADD_DATA_POINT = 0x0,
     };
 
+    MarketEvent();
+
     void subscribe(MarketObserver *observer);
 
     void unSubscribe(MarketObserver *observer);
