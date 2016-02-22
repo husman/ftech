@@ -12,6 +12,8 @@ set(SOURCE_FILES
     main.cpp
     MarketEvent.cpp
     MarketEvent.h
+    DailyPriceMarketData.h
+    DailyPriceMarketData.cpp
     MarketObserver.h
     )
 

@@ -1,22 +1,18 @@
 #include <iostream>
 #include "MarketData.h"
 #include "MarketEvent.h"
-#include "indicators/obv/Obv.h"
+#include "DailyPriceMarketData.h"
 
 int main() {
     MarketEvent mktEvent;
     MarketData mdADBE;
-    MarketData mdDailyPrices;
+    DailyPriceMarketData dailyPricesMD;
 
     mdADBE.seedDataFromCSV("data/HistoricalQuotes_ADBE_2-15-20162-51PMET.csv", "ADBE");
-    mdDailyPrices.seedDataFromCSV("data/HistoricalQuotes_ADBE_2-15-20162-51PMET.csv", "ADBE-daily-prices");
+    dailyPricesMD.seedDataFromCSV("data/daily-prices.csv", "ADBE-daily-prices");
 
-    Obv obvADBE(&mdADBE);
-    mktEvent.subscribe(&obvADBE);
-
-    obvADBE.plotOBV();
-
-    mktEvent.trigger(MarketEvent::EventType::ADD_DATA_POINT, "ADBE", 77.77, 999777);
+    dailyPricesMD.printData();
+    dailyPricesMD.plotClosing();
 
     return 0;
 }
