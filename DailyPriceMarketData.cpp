@@ -100,7 +100,7 @@ void DailyPriceMarketData::plot(DataPointType chartType) {
          it != data.end(); ++it) {
 
         double value;
-        switch(chartType) {
+        switch (chartType) {
             case DataPointType::DAILY_PRICE_OPEN_PRICE:
                 value = std::get<0>(*it);
                 break;
@@ -136,6 +136,28 @@ void DailyPriceMarketData::plot(DataPointType chartType) {
     gp << "set xrange [0:" << (dataPoints.size() - 1) << "]\nset yrange [" << min << ":" << max << "]\n";
     gp << "plot '-' with lines title 'Daily Closing Price'\n";
     gp.send1d(dataPoints);
+}
+
+std::tuple<double, double, double, double, double> DailyPriceMarketData::getPivots() {
+    std::vector<std::tuple<double, double, double, double, size_t>>::const_iterator it = data.begin();
+
+    // R2 = P + (H - L) = P + (R1 - S1)
+    // R1 = (P x 2) - L
+    // P = (H + L + C) / 3
+    // S1 = (P x 2) - H
+    // S2 = P - (H - L) = P - (R1 - S1)
+    double h = std::get<1>(*it);
+    double l = std::get<2>(*it);
+    double c = std::get<3>(*it);
+
+    double p = (h + l + c) / 3;
+
+    double r1 = p * 2 - l;
+    double s1 = p * 2 - h;
+    double r2 = p + (r1 - s1);
+    double s2 = p - (r1 - s1);
+
+    return std::make_tuple(p, r1, r2, s1, s2);
 }
 
 void DailyPriceMarketData::plotClosing() {

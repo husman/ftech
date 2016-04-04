@@ -49,6 +49,8 @@ public:
     std::vector<std::tuple<double, double, double, double, size_t>>::const_iterator getDataEnd() const;
 
     bool seedDataFromCSV(std::string filepath, std::string tickerSymbol);
+
+    std::tuple<double, double, double, double, double> getPivots();
 };
 
 #endif //FTECH_MARKETDATA_H
