@@ -2,6 +2,7 @@
 #include "MarketData.h"
 #include "MarketEvent.h"
 #include "DailyPriceMarketData.h"
+#include "indicators/adl/adl.h"
 
 int main() {
     MarketEvent mktEvent;
@@ -23,6 +24,9 @@ int main() {
     << std::get<3>(pivots) << ", s2="
     << std::get<4>(pivots)
     << ">\n";
+
+    ADL adl(&mdADBE);
+    adl.plotADL();
 
     return 0;
 }

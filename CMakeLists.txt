@@ -5,8 +5,10 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 set(SOURCE_FILES
     global.h
-    indicators/obv/Obv.cpp
-    indicators/obv/Obv.h
+    indicators/obv/obv.cpp
+    indicators/obv/obv.h
+    indicators/adl/adl.cpp
+    indicators/adl/adl.h
     MarketData.cpp
     MarketData.h
     main.cpp
