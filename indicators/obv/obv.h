@@ -7,18 +7,18 @@
 
 
 #include "../../global.h"
-#include "../../MarketData.h"
+#include "../../PriceMarketData.h"
 #include "../../MarketObserver.h"
 
 class Obv : public MarketObserver {
 private:
     std::vector<std::pair<double, double>> data;
-    MarketData const *mktData;
+    PriceMarketData const *mktData;
 
     void buildData();
 
 public:
-    Obv(MarketData const *marketData);
+    Obv(PriceMarketData const *marketData);
 
     void addDataPoint(double price, size_t volume);
 

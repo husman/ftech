@@ -43,10 +43,10 @@ void Obv::buildData() {
     double obvValue = 0;
     double prevPrice = 0;
 
-    for (std::vector<std::pair<double, size_t>>::const_iterator it = mktData->getDataBegin();
+    for (std::vector<std::tuple<double, double, double, double, size_t>>::const_iterator it = mktData->getDataBegin();
          it != mktData->getDataEnd(); ++it) {
-        double price = it->first;
-        size_t volume = it->second;
+        double price = std::get<3>(*it);
+        size_t volume = std::get<4>(*it);
 
         if (price > prevPrice) {
             obvValue = obvValue + volume;
@@ -59,7 +59,7 @@ void Obv::buildData() {
     }
 }
 
-Obv::Obv(MarketData const *marketData) {
+Obv::Obv(PriceMarketData const *marketData) {
     mktData = marketData;
     buildData();
 }

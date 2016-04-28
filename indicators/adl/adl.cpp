@@ -35,39 +35,41 @@ void ADL::plotADL() {
 
     gp << "set term x11 title 'FTech: " << mktData->getTickerSymbol() << " - ADL'\n";
     gp << "set xrange [0:" << (dataPoints.size() - 1) << "]\nset yrange [" << minADL << ":" << maxADL << "]\n";
-    gp << "plot '-' with lines title 'ADL'\n";
+    gp << "plot '-'  w l ls 7 title 'ADL'\n";
     gp.send1d(dataPoints);
 }
 
 void ADL::buildData() {
     double adlValue = 0;
     double prevADL = 0;
-    double minPrice = 0;
-    double maxPrice = 0;
     double mfm = 0;
     double mfv = 0;
 
-    for (std::vector<std::pair<double, size_t>>::const_iterator it = mktData->getDataBegin();
+    for (std::vector<std::tuple<double, double, double, double, size_t>>::const_iterator it = mktData->getDataBegin();
          it != mktData->getDataEnd(); ++it) {
-        double price = it->first;
-        size_t volume = it->second;
+        double highPrice = std::get<1>(*it);
+        double lowPrice = std::get<2>(*it);
+        double closePrice = std::get<3>(*it);
+        size_t volume = std::get<4>(*it);
 
-        if (price > maxPrice) {
-            maxPrice = price;
-        } else if (price < minPrice) {
-            minPrice = price;
+        if (highPrice == lowPrice) {
+            continue;
         }
 
-        mfm = ((price - minPrice) - (maxPrice - price)) / (maxPrice - minPrice);
+        mfm = ((closePrice - lowPrice) - (highPrice - closePrice)) / (highPrice - lowPrice);
+        std::cout << "highPrice=" << highPrice << " closePrice="
+        << closePrice << " lowPrice=" << lowPrice
+        << " mfm=" << mfm
+        << std::endl;
         mfv = mfm * volume;
         adlValue = prevADL + mfv;
 
         prevADL = adlValue;
-        data.push_back(std::make_pair(price, adlValue));
+        data.push_back(std::make_pair(closePrice, adlValue));
     }
 }
 
-ADL::ADL(MarketData const *marketData) {
+ADL::ADL(PriceMarketData const *marketData) {
     mktData = marketData;
     buildData();
 }

@@ -9,13 +9,15 @@ set(SOURCE_FILES
     indicators/obv/obv.h
     indicators/adl/adl.cpp
     indicators/adl/adl.h
+    indicators/rsi/rsi.cpp
+    indicators/rsi/rsi.h
     MarketData.cpp
     MarketData.h
     main.cpp
     MarketEvent.cpp
     MarketEvent.h
-    DailyPriceMarketData.h
-    DailyPriceMarketData.cpp
+        PriceMarketData.h
+        PriceMarketData.cpp
     MarketObserver.h
     )
 
