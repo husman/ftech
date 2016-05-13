@@ -1,19 +1,22 @@
 #include <iostream>
 #include "MarketData.h"
 #include "MarketEvent.h"
-#include "DailyPriceMarketData.h"
+#include "PriceMarketData.h"
 #include "indicators/adl/adl.h"
+#include "indicators/obv/obv.h"
+#include "indicators/rsi/rsi.h"
 
 int main() {
     MarketEvent mktEvent;
     MarketData mdADBE;
-    DailyPriceMarketData dailyPricesMD;
+    PriceMarketData dailyPricesMD;
 
-    mdADBE.seedDataFromCSV("data/HistoricalQuotes_ADBE_2-15-20162-51PMET.csv", "ADBE");
+    mdADBE.seedDataFromCSV("data/historical-prices.csv", "ADBE");
     dailyPricesMD.seedDataFromCSV("data/daily-prices.csv", "ADBE-daily-prices");
 
-    dailyPricesMD.printData();
-    dailyPricesMD.plotClosing();
+//    dailyPricesMD.printData();
+//    dailyPricesMD.plotClosing();
+//    dailyPricesMD.plotVolume();
 
     auto pivots = dailyPricesMD.getPivots();
     std::cout
@@ -25,8 +28,16 @@ int main() {
     << std::get<4>(pivots)
     << ">\n";
 
-    ADL adl(&mdADBE);
+    Obv obv(&dailyPricesMD);
+    obv.plotOBV();
+
+    ADL adl(&dailyPricesMD);
+    adl.printData();
     adl.plotADL();
+
+    RSI rsi(&dailyPricesMD);
+    rsi.printData();
+    rsi.plotRSI();
 
     return 0;
 }

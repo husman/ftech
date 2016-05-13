@@ -7,7 +7,7 @@
 
 #include "global.h"
 
-class DailyPriceMarketData {
+class PriceMarketData {
 private:
     // data: <double open, double high, double low, double close, size_t volume>
     std::vector<std::tuple<double, double, double, double, size_t>> data;
@@ -28,13 +28,15 @@ private:
     };
 
 public:
-    DailyPriceMarketData(int p = 20);
+    PriceMarketData(int p = 20);
 
     void printData();
 
     void plot(DataPointType chartType);
 
     void plotClosing();
+
+    void plotVolume();
 
     size_t getSize() const;
 

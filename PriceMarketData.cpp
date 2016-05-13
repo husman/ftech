@@ -2,13 +2,13 @@
 // Created by Haleeq Usman on 2/16/16.
 //
 
-#include "DailyPriceMarketData.h"
+#include "PriceMarketData.h"
 
-DailyPriceMarketData::DailyPriceMarketData(int p) {
+PriceMarketData::PriceMarketData(int p) {
     period = p;
 }
 
-void DailyPriceMarketData::processDataLine(std::string line) {
+void PriceMarketData::processDataLine(std::string line) {
     std::string value = "";
     size_t len = line.length();
     size_t column = 0;
@@ -32,7 +32,7 @@ void DailyPriceMarketData::processDataLine(std::string line) {
     data.push_back(std::make_tuple(values[0], values[1], values[2], values[3], values[4]));
 }
 
-void DailyPriceMarketData::printData() {
+void PriceMarketData::printData() {
     std::cout << "====== " << ticker << " DAILY PRICE MARKET DATA ======" << std::endl;
     for (std::vector<std::tuple<double, double, double, double, size_t>>::const_iterator it = data.begin();
          it != data.end(); ++it) {
@@ -42,7 +42,7 @@ void DailyPriceMarketData::printData() {
     std::cout << "=============================" << std::endl;
 }
 
-bool DailyPriceMarketData::seedDataFromCSV(std::string filepath, std::string tickerSymbol) {
+bool PriceMarketData::seedDataFromCSV(std::string filepath, std::string tickerSymbol) {
     std::ifstream file(filepath);
     std::string line;
     size_t row = 0;
@@ -65,31 +65,31 @@ bool DailyPriceMarketData::seedDataFromCSV(std::string filepath, std::string tic
     return true;
 }
 
-size_t DailyPriceMarketData::getSize() const {
+size_t PriceMarketData::getSize() const {
     return data.size();
 }
 
-std::vector<std::tuple<double, double, double, double, size_t>>::const_iterator DailyPriceMarketData::getDataBegin() const {
+std::vector<std::tuple<double, double, double, double, size_t>>::const_iterator PriceMarketData::getDataBegin() const {
     return data.begin();
 }
 
-std::vector<std::tuple<double, double, double, double, size_t>>::const_iterator DailyPriceMarketData::getDataEnd() const {
+std::vector<std::tuple<double, double, double, double, size_t>>::const_iterator PriceMarketData::getDataEnd() const {
     return data.end();
 }
 
-size_t DailyPriceMarketData::getPeriod() const {
+size_t PriceMarketData::getPeriod() const {
     return data.size();
 }
 
-std::string DailyPriceMarketData::getTickerSymbol() const {
+std::string PriceMarketData::getTickerSymbol() const {
     return ticker;
 }
 
-void DailyPriceMarketData::addDataPoint(double open, double high, double low, double close, size_t volume) {
+void PriceMarketData::addDataPoint(double open, double high, double low, double close, size_t volume) {
     data.push_back(std::make_tuple(open, high, low, close, volume));
 }
 
-void DailyPriceMarketData::plot(DataPointType chartType) {
+void PriceMarketData::plot(DataPointType chartType) {
     Gnuplot gp;
     double min = -1;
     double max = -1;
@@ -134,11 +134,11 @@ void DailyPriceMarketData::plot(DataPointType chartType) {
 
     gp << "set term x11 title 'FTech: " << getTickerSymbol() << " - Daily Closing Price'\n";
     gp << "set xrange [0:" << (dataPoints.size() - 1) << "]\nset yrange [" << min << ":" << max << "]\n";
-    gp << "plot '-' with lines title 'Daily Closing Price'\n";
+    gp << "plot '-' w p ls 7 title 'Daily Closing Price'\n";
     gp.send1d(dataPoints);
 }
 
-std::tuple<double, double, double, double, double> DailyPriceMarketData::getPivots() {
+std::tuple<double, double, double, double, double> PriceMarketData::getPivots() {
     std::vector<std::tuple<double, double, double, double, size_t>>::const_iterator it = data.begin();
 
     // R2 = P + (H - L) = P + (R1 - S1)
@@ -160,6 +160,10 @@ std::tuple<double, double, double, double, double> DailyPriceMarketData::getPivo
     return std::make_tuple(p, r1, r2, s1, s2);
 }
 
-void DailyPriceMarketData::plotClosing() {
+void PriceMarketData::plotClosing() {
     plot(DataPointType::DAILY_PRICE_CLOSE_PRICE);
+}
+
+void PriceMarketData::plotVolume() {
+    plot(DataPointType::DAILY_PRICE_VOLUME);
 }
