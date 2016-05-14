@@ -11,6 +11,10 @@ set(SOURCE_FILES
     indicators/adl/adl.h
     indicators/rsi/rsi.cpp
     indicators/rsi/rsi.h
+    indicators/sma/sma.cpp
+    indicators/sma/sma.h
+    indicators/ema/ema.cpp
+    indicators/ema/ema.h
     MarketData.cpp
     MarketData.h
     main.cpp

@@ -134,7 +134,7 @@ void PriceMarketData::plot(DataPointType chartType) {
 
     gp << "set term x11 title 'FTech: " << getTickerSymbol() << " - Daily Closing Price'\n";
     gp << "set xrange [0:" << (dataPoints.size() - 1) << "]\nset yrange [" << min << ":" << max << "]\n";
-    gp << "plot '-' w p ls 7 title 'Daily Closing Price'\n";
+    gp << "plot '-' w l ls 7 title 'Daily Closing Price'\n";
     gp.send1d(dataPoints);
 }
 
