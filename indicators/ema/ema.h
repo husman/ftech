@@ -6,30 +6,17 @@
 #define FTECH_EMA_H
 
 
-#include "../../global.h"
-#include "../../PriceMarketData.h"
-#include "../../MarketObserver.h"
+#include "../indicator.h"
 #include <list>
 
-class EMA : public MarketObserver {
+class EMA : public Indicator {
 private:
-    std::vector<std::pair<double, double>> data;
-    PriceMarketData const *mktData;
     unsigned int period;
     std::list<double> periodPrices;
-
     void buildData();
 
 public:
-    EMA(PriceMarketData const *marketData, unsigned int p);
-
-    void addDataPoint(double price, size_t volume);
-
-    void printData();
-
-    void plotEMA();
-
-    std::string getTickerSymbol();
+    EMA(PriceMarketData const *marketData, unsigned int p, std::string n = "");
 };
 
 

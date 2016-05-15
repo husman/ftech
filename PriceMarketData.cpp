@@ -91,6 +91,7 @@ void PriceMarketData::addDataPoint(double open, double high, double low, double 
 
 void PriceMarketData::plot(DataPointType chartType) {
     Gnuplot gp;
+    std::string title;
     double min = -1;
     double max = -1;
     size_t x = 0;
@@ -103,18 +104,23 @@ void PriceMarketData::plot(DataPointType chartType) {
         switch (chartType) {
             case DataPointType::DAILY_PRICE_OPEN_PRICE:
                 value = std::get<0>(*it);
+                title = "Price openings";
                 break;
             case DataPointType::DAILY_PRICE_HIGH_PRICE:
                 value = std::get<1>(*it);
+                title = "Price highs";
                 break;
             case DataPointType::DAILY_PRICE_LOW_PRICE:
                 value = std::get<2>(*it);
+                title = "Price lows";
                 break;
             case DataPointType::DAILY_PRICE_CLOSE_PRICE:
                 value = std::get<3>(*it);
+                title = "Price closings";
                 break;
             case DataPointType::DAILY_PRICE_VOLUME:
                 value = std::get<4>(*it);
+                title = "Volume";
                 break;
             default:
                 value = std::get<0>(*it);
@@ -132,7 +138,7 @@ void PriceMarketData::plot(DataPointType chartType) {
         dataPoints.push_back(std::make_pair(x++, value));
     }
 
-    gp << "set term x11 title 'FTech: " << getTickerSymbol() << " - Daily Closing Price'\n";
+    gp << "set term x11 title 'FTech: " << getTickerSymbol() << " - " << title << "'\n";
     gp << "set xrange [0:" << (dataPoints.size() - 1) << "]\nset yrange [" << min << ":" << max << "]\n";
     gp << "plot '-' w l ls 7 title 'Daily Closing Price'\n";
     gp.send1d(dataPoints);

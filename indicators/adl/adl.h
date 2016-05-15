@@ -6,27 +6,14 @@
 #define FTECH_ADL_H
 
 
-#include "../../global.h"
-#include "../../PriceMarketData.h"
-#include "../../MarketObserver.h"
+#include "../indicator.h"
 
-class ADL : public MarketObserver {
+class ADL : public Indicator {
 private:
-    std::vector<std::pair<double, double>> data;
-    PriceMarketData const *mktData;
-
     void buildData();
 
 public:
-    ADL(PriceMarketData const *marketData);
-
-    void addDataPoint(double price, size_t volume);
-
-    void printData();
-
-    void plotADL();
-
-    std::string getTickerSymbol();
+    ADL(PriceMarketData const *marketData, std::string n = "");
 };
 
 

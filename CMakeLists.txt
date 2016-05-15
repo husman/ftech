@@ -5,6 +5,8 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 set(SOURCE_FILES
     global.h
+    indicators/indicator.cpp
+    indicators/indicator.h
     indicators/obv/obv.cpp
     indicators/obv/obv.h
     indicators/adl/adl.cpp
@@ -20,10 +22,10 @@ set(SOURCE_FILES
     main.cpp
     MarketEvent.cpp
     MarketEvent.h
-        PriceMarketData.h
-        PriceMarketData.cpp
+    PriceMarketData.h
+    PriceMarketData.cpp
     MarketObserver.h
-    )
+)
 
 set(LIB_LINKS
     util
