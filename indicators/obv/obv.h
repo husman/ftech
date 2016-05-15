@@ -6,27 +6,14 @@
 #define FTECH_OBV_H
 
 
-#include "../../global.h"
-#include "../../PriceMarketData.h"
-#include "../../MarketObserver.h"
+#include "../indicator.h"
 
-class Obv : public MarketObserver {
+class Obv : public Indicator {
 private:
-    std::vector<std::pair<double, double>> data;
-    PriceMarketData const *mktData;
-
     void buildData();
 
 public:
-    Obv(PriceMarketData const *marketData);
-
-    void addDataPoint(double price, size_t volume);
-
-    void printData();
-
-    void plotOBV();
-
-    std::string getTickerSymbol();
+    Obv(PriceMarketData const *marketData, std::string n = "");
 };
 
 

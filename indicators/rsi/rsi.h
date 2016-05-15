@@ -6,27 +6,14 @@
 #define FTECH_RSI_H
 
 
-#include "../../global.h"
-#include "../../PriceMarketData.h"
-#include "../../MarketObserver.h"
+#include "../indicator.h"
 
-class RSI : public MarketObserver {
+class RSI : public Indicator {
 private:
-    std::vector<std::pair<double, double>> data;
-    PriceMarketData const *mktData;
-
     void buildData();
 
 public:
-    RSI(PriceMarketData const *marketData);
-
-    void addDataPoint(double price, size_t volume);
-
-    void printData();
-
-    void plotRSI();
-
-    std::string getTickerSymbol();
+    RSI(PriceMarketData const *marketData, std::string n = "");
 };
 
 

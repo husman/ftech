@@ -6,30 +6,17 @@
 #define FTECH_SMA_H
 
 
-#include "../../global.h"
-#include "../../PriceMarketData.h"
-#include "../../MarketObserver.h"
+#include "../indicator.h"
 #include <list>
 
-class SMA : public MarketObserver {
+class SMA : public Indicator {
 private:
-    std::vector<std::pair<double, double>> data;
-    PriceMarketData const *mktData;
     unsigned int period;
     std::list<double> periodPrices;
-
     void buildData();
 
 public:
-    SMA(PriceMarketData const *marketData, unsigned int p);
-
-    void addDataPoint(double price, size_t volume);
-
-    void printData();
-
-    void plotSMA();
-
-    std::string getTickerSymbol();
+    SMA(PriceMarketData const *marketData, unsigned int p, std::string n = "");
 };
 
 
