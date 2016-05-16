@@ -41,7 +41,12 @@ void Indicator::plot() {
 
 Indicator::Indicator(PriceMarketData const *marketData, std::string n) {
     mktData = marketData;
-    name = n.empty() ? "Indicator" : n;
+    name = n;
+}
+
+Indicator::Indicator(std::string n) {
+    mktData = new PriceMarketData();
+    name = n;
 }
 
 void Indicator::addDataPoint(double price, size_t volume) {
@@ -60,4 +65,16 @@ void Indicator::addDataPoint(double price, size_t volume) {
 
 std::string Indicator::getTickerSymbol() {
     return mktData->getTickerSymbol();
+}
+
+Indicator::IndicatorDataVector::const_iterator Indicator::getDataBegin() const {
+    return data.begin();
+}
+
+Indicator::IndicatorDataVector::const_iterator Indicator::getDataEnd() const {
+    return data.end();
+}
+
+size_t Indicator::getSize() {
+    data.size();
 }

@@ -28,6 +28,8 @@ private:
     };
 
 public:
+    typedef std::vector<std::tuple<double, double, double, double, size_t>> PriceMarketDataVector;
+
     PriceMarketData(int p = 20);
 
     void printData();

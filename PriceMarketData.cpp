@@ -29,7 +29,7 @@ void PriceMarketData::processDataLine(std::string line) {
 
     }
 
-    data.push_back(std::make_tuple(values[0], values[1], values[2], values[3], values[4]));
+    data.insert(data.begin(), std::make_tuple(values[0], values[1], values[2], values[3], values[4]));
 }
 
 void PriceMarketData::printData() {
@@ -140,7 +140,7 @@ void PriceMarketData::plot(DataPointType chartType) {
 
     gp << "set term x11 title 'FTech: " << getTickerSymbol() << " - " << title << "'\n";
     gp << "set xrange [0:" << (dataPoints.size() - 1) << "]\nset yrange [" << min << ":" << max << "]\n";
-    gp << "plot '-' w l ls 7 title 'Daily Closing Price'\n";
+    gp << "plot '-' w l ls 6 title 'Daily Closing Price'\n";
     gp.send1d(dataPoints);
 }
 

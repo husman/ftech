@@ -12,11 +12,14 @@
 class EMA : public Indicator {
 private:
     unsigned int period;
+    double ema, sma, smaCount;
     std::list<double> periodPrices;
     void buildData();
 
 public:
     EMA(PriceMarketData const *marketData, unsigned int p, std::string n = "");
+    EMA(unsigned int p, std::string n = "");
+    void addPrice(double price);
 };
 
 

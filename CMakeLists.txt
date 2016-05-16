@@ -17,6 +17,8 @@ set(SOURCE_FILES
     indicators/sma/sma.h
     indicators/ema/ema.cpp
     indicators/ema/ema.h
+    indicators/macd/macd.cpp
+    indicators/macd/macd.h
     MarketData.cpp
     MarketData.h
     main.cpp
