@@ -20,9 +20,9 @@ void RSI::buildData() {
         double price = std::get<3>(*it);
         double delta = price - prevPrice;
 
-        if (delta == 0) {
-            continue;
-        }
+//        if (delta == 0) {
+//            continue;
+//        }
 
         if (counter > 0) {
             if (delta >= 0) {
@@ -36,7 +36,7 @@ void RSI::buildData() {
         if (isInitialRSI) {
             prevPrice = price;
 
-            if (counter < period != 0) {
+            if (counter < period) {
                 continue;
             }
 
@@ -65,6 +65,7 @@ void RSI::buildData() {
         double rs = prevAvgGain / prevAvgLoss;
         double rsi = 100 - 100 / (1 + rs);
         data.push_back(std::make_pair(price, rsi));
+        prevPrice = price;
     }
 }
 

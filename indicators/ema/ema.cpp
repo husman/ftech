@@ -37,6 +37,7 @@ void EMA::buildData() {
 
         double mul = 2 / ((double) period + 1);
         ema = (price - ema) * mul + ema;
+//        data.insert(data.begin(), std::make_pair(price, ema));
         data.push_back(std::make_pair(price, ema));
     }
 }
@@ -55,5 +56,6 @@ void EMA::addPrice(double price) {
 
     double mul = 2 / ((double) period + 1);
     ema = (price - ema) * mul + ema;
+//    data.insert(data.begin(), std::make_pair(price, ema));
     data.push_back(std::make_pair(price, ema));
 }

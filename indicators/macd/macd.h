@@ -11,10 +11,11 @@
 
 class MACD : public Indicator {
 private:
-    EMA *ema9, *ema12, *ema26;
+    EMA *ema12, *ema26;
     void buildData();
 
 public:
+    EMA *ema9;
     MACD(PriceMarketData const *marketData, std::string n = "");
     void plot();
     void printData();
