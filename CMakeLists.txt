@@ -29,6 +29,8 @@ set(SOURCE_FILES
     MarketObserver.h
     models/macking.h
     models/macking.cpp
+    RateMarketData.h
+    RateMarketData.cpp
 )
 
 set(LIB_LINKS
@@ -41,14 +43,17 @@ set(LIB_LINKS
     ssl
     crypto
     libcpprest.2.8.dylib
+    liboauth.0.dylib
     )
 
 link_directories($ENV{BOOST_HOME}/lib)
 link_directories(/usr/local/opt/openssl/lib)
 link_directories($ENV{HOME}/workspace/casablanca/build.debug/Binaries)
+link_directories(/usr/local/lib)
 include_directories($ENV{BOOST_HOME}/include)
 include_directories($ENV{HOME}/workspace/casablanca/Release/include)
 include_directories(/usr/local/opt/openssl/include)
+include_directories(/usr/local/include)
 
 add_executable(ftech ${SOURCE_FILES})
 target_link_libraries(ftech ${LIB_LINKS})

@@ -32,3 +32,5 @@
 
 # IDE
 .idea/
+data/*
+models.backup/*

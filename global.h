@@ -9,7 +9,7 @@
 #include <iostream>
 #include <vector>
 #include <cmath>
-#include <boost/tuple/tuple.hpp>
+#include <utility>
 
 #include "gnuplot/gnuplot-iostream.h"
 
